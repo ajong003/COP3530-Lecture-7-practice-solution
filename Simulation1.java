@@ -4,7 +4,7 @@ import java.util.*;
 public class Simulation1
 {
 	//the probability that a customer will arrive in any given 1-minute interval
-	private static final double ARRIVAL_PROBABILITY = 0.5;
+	private static final double ARRIVAL_PROBABILITY = 1;
 
 	//the total number of minutes to simulate
 	private static final int SIMULATION_TIME = 480;
@@ -33,6 +33,23 @@ public class Simulation1
 			//INSERT CODE HERE
 			//Use the customerArrives method to determine if a customer arrives at this particular minute.
 			//If so, add a customer to the queue.
+            if (customerArrives(ARRIVAL_PROBABILITY)) {
+
+                q.add(new Customer(minute));
+
+            }
+
+                for(int i=0;i<registerAvailableTimes.length;i++){
+
+                    if(registerAvailableTimes[i]<=minute && !q.isEmpty()){
+                        numCustomers+=1;
+                        registerAvailableTimes[i]=minute+q.peek().getTimeNeededAtRegister();
+                        System.out.println(minute-q.peek().getTimeEnteredQueue());
+                        totalWaitTime+=minute-q.peek().getTimeEnteredQueue();
+                        q.remove();
+                    }
+                }
+
 
 
 
@@ -47,7 +64,7 @@ public class Simulation1
 
 
         }
-        System.out.println("Average waiting time = " + (double)totalWaitTime/numCustomers);
+        System.out.println("Total wait time = " + (double)totalWaitTime + " numcustomers " + numCustomers);
     }
 
     // Returns true if customer arrives given probability p

@@ -11,7 +11,8 @@ public class Customer
 		timeEnteredQueue = timeEntered;
 
 		//initialize to random number from 1 to 10 minutes
-		timeNeededAtRegister = (int)(Math.random() * 10 + 1);
+		//timeNeededAtRegister = (int)(Math.random() * 10 + 1);
+		timeNeededAtRegister = 5;
 	}
 
 	//returns the time this customer entered the queue
