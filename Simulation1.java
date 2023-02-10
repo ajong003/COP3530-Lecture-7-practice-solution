@@ -40,11 +40,18 @@ public class Simulation1
             }
 
                 for(int i=0;i<registerAvailableTimes.length;i++){
+                    System.out.print("i: " + i + "    ");
+                    if(!(registerAvailableTimes[i]<=minute)){
+                        System.out.println("Register not available");
+                    }
+                    if(q.isEmpty()){
+                        System.out.println("empty");
+                    }
 
                     if(registerAvailableTimes[i]<=minute && !q.isEmpty()){
                         numCustomers+=1;
                         registerAvailableTimes[i]=minute+q.peek().getTimeNeededAtRegister();
-                        System.out.println(minute-q.peek().getTimeEnteredQueue());
+                        System.out.println("added " + (minute-q.peek().getTimeEnteredQueue()));
                         totalWaitTime+=minute-q.peek().getTimeEnteredQueue();
                         q.remove();
                     }
